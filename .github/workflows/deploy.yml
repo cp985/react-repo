@@ -1,36 +1,37 @@
-steps:
+name: Vite Deploy su GitHub Pages
 
-  # 1. Checkout del codice (fondamentale)
-  - name: Checkout Repository Code
-    uses: actions/checkout@v4
-    with:
-      fetch-depth: 0 
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
-  # 2. Configurazione di Node.js
-  - name: Set up Node.js
-    uses: actions/setup-node@v4
-    with:
-      node-version: '20' # Usa una versione LTS
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 
 
-  # 3. Installazione e Compilazione
-  - name: Install Dependencies and Build (Vite)
-    run: |
-      npm ci
-      npm run build 
-      # Compila i file nella cartella 'dist'
-    env:
-      # Inserisci qui le tue variabili d'ambiente (se presenti)
-      # VITE_EXAMPLE_VAR: valore
-      
-  # 4. Deployment su GitHub Pages (Target: branch gh-pages)
-  - name: Deploy to GitHub Pages
-    uses: peaceiris/actions-gh-pages@v4
-    if: github.ref == 'refs/heads/main'
-    with:
-      # Il GITHUB_TOKEN è fornito automaticamente da GitHub
-      github_token: ${{ secrets.GITHUB_TOKEN }}
-      # 🔴 CARTELLA DI PUBBLICAZIONE: DEVE essere 'dist'
-      publish_dir: ./dist
-      # BRANCH DI DESTINAZIONE
-      publish_branch: gh-pages
-      commit_message: "Automated Vite Deployment"
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies and Build (Vite)
+        run: |
+          npm ci
+          npm run build 
+          
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          commit_message: "Automated Vite Deployment"
