@@ -1,9 +1,9 @@
 name: Vite Deploy su GitHub Pages
 
 permissions:
-  contents: write # Permette al bot di scrivere sul repository (necessario per pushare gh-pages)
-  pages: write    # Permette al bot di gestire le pagine (migliore pratica)
-  id-token: write # Necessario per l'autenticazione
+  contents: read
+  pages: write
+  id-token: write
 
 on:
   push:
@@ -11,32 +11,40 @@ on:
       - main
   workflow_dispatch:
 
+# Imposta i permessi per il deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   build_and_deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     
     steps:
-    
       - name: Checkout Repository Code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
       - name: Install Dependencies and Build (Vite)
         run: |
           npm ci
           npm run build 
           
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        if: github.ref == 'refs/heads/main'
+      # Carica la cartella 'dist' come artefatto per GitHub Pages
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          publish_branch: gh-pages
-          commit_message: "Automated Vite Deployment"
+          path: ./dist
+
+      # Esegue il deployment effettivo
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
