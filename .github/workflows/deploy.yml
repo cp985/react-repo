@@ -1,5 +1,10 @@
 name: Vite Deploy su GitHub Pages
 
+permissions:
+  contents: write # Permette al bot di scrivere sul repository (necessario per pushare gh-pages)
+  pages: write    # Permette al bot di gestire le pagine (migliore pratica)
+  id-token: write # Necessario per l'autenticazione
+
 on:
   push:
     branches:
