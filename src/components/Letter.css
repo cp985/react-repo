@@ -41,7 +41,7 @@
 }
 
 
-.backgroundLetter:hover::before {
+.backgroundLetter.open::before {
     opacity: 1;
 }
 
@@ -130,4 +130,27 @@ input {
     100% {
         transform: translate(0, 0) rotate(0deg);
     }
+}
+
+button:disabled{
+
+    cursor: not-allowed;
+    background-color: oklch(80.8% 0.114 19.571);
+}
+
+.pulse{
+       animation-name: border-pulse-glow;
+    animation-duration: 2s;
+    /* Durata del ciclo */
+    animation-iteration-count: infinite;
+    /* Infinito */
+    animation-timing-function: ease-in-out;
+    /* Fluidità */
+
+    /* Transizione per lo stato focus e hover (per interattività) */
+    transition: all 0.3s ease-in-out;
+
+    /* Rimuove l'ombra di focus di default del browser */
+    outline: none;
+ 
 }
