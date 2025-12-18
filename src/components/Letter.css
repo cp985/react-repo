@@ -1,6 +1,8 @@
 .container-letter {
-    width: 380px;
-    height: 390px;
+    width: 100%;
+    height: auto;
+    max-width: 250px;
+    aspect-ratio: 4/4;
 
 }
 
@@ -23,8 +25,8 @@
 .backgroundLetter::before {
     content: '';
     position: absolute;
-    top: -40px;
-    left: -5px;
+    top: -25px;
+    left: -3px;
     width: 100%;
     height: 100%;
     z-index: 0;
@@ -45,7 +47,12 @@
     opacity: 1;
 }
 
+label {
+    font-size: clamp(1.3rem, 0.5rem + 2vw, 2rem);
+}
+
 input {
+    font-size: clamp(1rem, 0.3rem + 2vw, 2rem);
     margin: 1rem;
     border: 3px solid #B22222;
 
@@ -132,14 +139,20 @@ input {
     }
 }
 
-button:disabled{
+
+
+
+
+button:disabled {
 
     cursor: not-allowed;
     background-color: oklch(80.8% 0.114 19.571);
+    border: 3px solid #ffffff;
+    color: aliceblue;
 }
 
-.pulse{
-       animation-name: border-pulse-glow;
+.pulse {
+    animation-name: border-pulse-glow;
     animation-duration: 2s;
     /* Durata del ciclo */
     animation-iteration-count: infinite;
@@ -152,5 +165,5 @@ button:disabled{
 
     /* Rimuove l'ombra di focus di default del browser */
     outline: none;
- 
+
 }

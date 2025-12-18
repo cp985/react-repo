@@ -1,7 +1,7 @@
 import "./Header.css";
 export default function Header() {
   let cssClassH1 = "christmas christmas-wave";
-  let cssClassH1rest = "text-red-500 text-[100px]";
+  let cssClassH1rest = "text-red-500 text-[70px]";
   const h1Text = `Happy${`\u2009`}Christmas`;
   const h1TextArray = h1Text.split("");
   

@@ -20,21 +20,21 @@ export default function Letter() {
   }
 
   function checkUserMessage(name) {
+    const nameTrimLower = name.trim().toLowerCase();
     if (
-      name.trim() === "Dany" ||
-      name.trim() === "dany" ||
-      name.trim() === "Daniele"
+      nameTrimLower === "dany" ||
+       nameTrimLower === "dani"||
+      nameTrimLower ==="daniele"
     ) {
       return {letter: 0, isCorrect: true};
     } else if (
-      name.trim() === "Dodo" ||
-      name.trim() === "dodo" ||
-      name.trim() === "Dorian"
+      nameTrimLower === "dodo" ||
+      nameTrimLower === "dorian"
     ) {
       return {letter: 1, isCorrect: true};
     } else if (
-      name.trim() === "アレッサンドラ" ||
-      name.trim() === "Reze"
+      nameTrimLower === "アレッサンドラ" ||
+      nameTrimLower === "reze"
     ) {
       return {letter: 2, isCorrect: true};
     } else {
@@ -65,14 +65,14 @@ export default function Letter() {
       <div className="flex">
         <div className="flex items-center justify-center flex-col">
           <label
-            className="text-black text-4xl font-bold font-serif"
+            className="text-black font-bold font-serif"
             htmlFor="name"
           >
             Inserisci il tuo nome qui sotto per aprire la lettera!
           </label>
           <div className="flex justify-center items-center">
             <input
-              className="w-1/2 text-3xl bg-white text-black font-serif border-2 rounded-xl p-1"
+              className="w-1/2  bg-white text-black font-serif border-2 rounded-xl p-0.5 pl-2"
               type="text"
               name="name"
               id="name"
@@ -81,7 +81,7 @@ export default function Letter() {
             />
             <button disabled={!user.isCorrect}
               onClick={openMessage}
-              className={` bg-red-500 border-2 border-red-500 font-serif text-3xl p-2 text-black rounded-xl ${user.isCorrect ? 'pulse' : ''}`}
+              className={` bg-red-500 border-2 border-red-500 font-serif text-2xl p-2 text-black rounded-xl ${user.isCorrect ? 'pulse correct' : ''}`}
             >
               Apri!
             </button>
