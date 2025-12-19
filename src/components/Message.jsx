@@ -4,7 +4,7 @@ import dbLetters from "../../dbLetters.js";
 import Form from "./Form";
 import "./Message.css";
 const Message = forwardRef(function Message(
-  { closeMessage, letterNumber, resetState },
+  { closeMessage, letterNumber, resetState,nameUser },
   ref
 ) {
   const [displayedText, setDisplayedText] = useState("");
@@ -31,7 +31,7 @@ const Message = forwardRef(function Message(
       const timeout = setTimeout(() => {
         setDisplayedText((prev) => prev + fullText[index]);
         setIndex((prev) => prev + 1);
-      }, 80); // Velocità di scrittura (ms)
+      }, 1); // Velocità di scrittura (ms)
       scrollToBottom();
       return () => clearTimeout(timeout);
     }
@@ -56,7 +56,7 @@ const Message = forwardRef(function Message(
         </p>
         <div ref={messagesEndRef} />
       </div>
-      {index === fullText.length && <Form />}
+      {index === fullText.length && <Form closeMessage={closeMessage} nameUser={nameUser}/>}
     </dialog>,
 
     document.getElementById("dialog")

@@ -1,13 +1,13 @@
 import "./Header.css";
 export default function Header() {
   let cssClassH1 = "christmas christmas-wave";
-  let cssClassH1rest = "text-red-500 text-[70px]";
+  let cssClassH1rest = "text-red-500 text-[70px] ";
   const h1Text = `Happy${`\u2009`}Christmas`;
   const h1TextArray = h1Text.split("");
   
   return (
     <header>
-      <h1 className={`${cssClassH1rest} ${cssClassH1}`}>
+      <h1 className={`${cssClassH1rest} ${cssClassH1} m-0`}>
       {h1TextArray.map((letter, index) => (
         <span style={{ animationDelay: `${index * 0.1}s`}} key={index}>{letter}</span>
       ))}

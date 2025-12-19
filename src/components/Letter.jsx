@@ -59,6 +59,7 @@ export default function Letter() {
         ref={messageRef}
         closeMessage={closeMessage}
         letterNumber={user.letter}
+        nameUser={user.name}
         resetState={resetState}
       />
 
