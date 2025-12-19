@@ -4,7 +4,7 @@ import dbLetters from "../../dbLetters.js";
 import Form from "./Form";
 import "./Message.css";
 const Message = forwardRef(function Message(
-  { closeMessage, letterNumber, resetState,nameUser },
+  { isOpen, closeMessage, letterNumber, resetState, nameUser },
   ref
 ) {
   const [displayedText, setDisplayedText] = useState("");
@@ -19,23 +19,25 @@ const Message = forwardRef(function Message(
   };
   // Reset dell'animazione quando cambia la lettera
   useEffect(() => {
-    setDisplayedText("");
-    setIndex(0);
-  }, [letterNumber, fullText]);
+    if (isOpen) {
+      setDisplayedText("");
+      setIndex(0);
+    }
+  }, [letterNumber, fullText,isOpen]);
 
   // Logica Typewriter
   useEffect(() => {
-    if (!fullText) return;
+    if (!fullText || !isOpen) return;
 
     if (index < fullText.length) {
       const timeout = setTimeout(() => {
         setDisplayedText((prev) => prev + fullText[index]);
         setIndex((prev) => prev + 1);
-      }, 1); // Velocità di scrittura (ms)
+      }, 80); // Velocità di scrittura (ms)
       scrollToBottom();
       return () => clearTimeout(timeout);
     }
-  }, [index, fullText]);
+  }, [index, fullText,isOpen]);
   return createPortal(
     <dialog
       className="message"
@@ -56,7 +58,9 @@ const Message = forwardRef(function Message(
         </p>
         <div ref={messagesEndRef} />
       </div>
-      {index === fullText.length && <Form closeMessage={closeMessage} nameUser={nameUser}/>}
+      {index === fullText.length && (
+        <Form closeMessage={closeMessage} nameUser={nameUser} />
+      )}
     </dialog>,
 
     document.getElementById("dialog")

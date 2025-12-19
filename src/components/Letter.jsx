@@ -10,6 +10,7 @@ const initalState = {
 };
 export default function Letter() {
   const [user, setUser] = useState(initalState);
+  const [isOpen, setIsOpen] = useState(false);
   const messageRef = useRef();
   let cssMail = "backgroundLetter ";
 
@@ -43,15 +44,16 @@ export default function Letter() {
 
   function openMessage() {
    
-    if(messageRef.current){messageRef.current.showModal();}
+    if(messageRef.current){messageRef.current.showModal();setIsOpen(true);}
     
   }
   function closeMessage() {
-    if(messageRef.current){messageRef.current.close();}
+    if(messageRef.current){messageRef.current.close();setIsOpen(false);}
     
   }
   function resetState() {
     setUser(initalState);
+    setIsOpen(false);
   }
   return (
     <>
@@ -61,6 +63,7 @@ export default function Letter() {
         letterNumber={user.letter}
         nameUser={user.name}
         resetState={resetState}
+        isOpen={isOpen}
       />
 
       <div className="flex">
