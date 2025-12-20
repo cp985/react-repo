@@ -14,6 +14,7 @@
   font-style: italic;
   white-space: pre-wrap;
   border: 3px solid red;
+  outline: none;
 }
 
 p {
