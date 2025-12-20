@@ -77,6 +77,8 @@ button:focus-visible {
 
 
 input, textarea{
- appearance: none;
+
+ touch-action: manipulation;
+  
 }
 
