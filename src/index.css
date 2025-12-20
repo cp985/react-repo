@@ -76,6 +76,7 @@ button:focus-visible {
 }
 
 
-input:focus, textarea:focus{
- font-size: 16px;
+input, textarea{
+ appearance: none;
 }
+
