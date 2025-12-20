@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Form({ closeMessage,nameUser }) {
+export default function Form({isEnd, setIsEnd, closeMessage,nameUser }) {
   const [postSend, setPostSend] = useState("");
   const [loading, setLoading] = useState(false);
   const API_URL = "https://eoufqhtidhjgd24.m.pipedream.net";
@@ -38,6 +38,7 @@ export default function Form({ closeMessage,nameUser }) {
     };
 
     send();
+    isEnd()
     closeMessage();
   }
 

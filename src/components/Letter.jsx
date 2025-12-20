@@ -11,45 +11,54 @@ const initalState = {
 export default function Letter() {
   const [user, setUser] = useState(initalState);
   const [isOpen, setIsOpen] = useState(false);
+  const [isEnd, setIsEnd] = useState(false);
+
   const messageRef = useRef();
   let cssMail = "backgroundLetter ";
+  let pupazzo = "pupazzo";
 
   function onChange(e) {
     let name = e.target.value;
-   const {letter, isCorrect} = checkUserMessage(name);
+    const { letter, isCorrect } = checkUserMessage(name);
     setUser({ ...user, name: name, letter: letter, isCorrect: isCorrect });
+  }
+
+  function handlingIsEnd() {
+    setIsEnd(true);
   }
 
   function checkUserMessage(name) {
     const nameTrimLower = name.trim().toLowerCase();
     if (
       nameTrimLower === "dany" ||
-       nameTrimLower === "dani"||
-      nameTrimLower ==="daniele"
+      nameTrimLower === "dani" ||
+      nameTrimLower === "daniele"
     ) {
-      return {letter: 0, isCorrect: true};
-    } else if (
-      nameTrimLower === "dodo" ||
-      nameTrimLower === "dorian"
-    ) {
-      return {letter: 1, isCorrect: true};
+      return { letter: 0, isCorrect: true };
+    } else if (nameTrimLower === "dodo" || nameTrimLower === "dorian") {
+      return { letter: 1, isCorrect: true };
     } else if (
       nameTrimLower === "アレッサンドラ" ||
-      nameTrimLower === "reze"
+      nameTrimLower === "reze" ||
+      nameTrimLower === "알레산드라"
     ) {
-      return {letter: 2, isCorrect: true};
+      return { letter: 2, isCorrect: true };
     } else {
-      return {letter: 3, isCorrect: false};}
+      return { letter: 3, isCorrect: false };
+    }
   }
 
   function openMessage() {
-   
-    if(messageRef.current){messageRef.current.showModal();setIsOpen(true);}
-    
+    if (messageRef.current) {
+      messageRef.current.showModal();
+      setIsOpen(true);
+    }
   }
   function closeMessage() {
-    if(messageRef.current){messageRef.current.close();setIsOpen(false);}
-    
+    if (messageRef.current) {
+      messageRef.current.close();
+      setIsOpen(false);
+    }
   }
   function resetState() {
     setUser(initalState);
@@ -64,37 +73,57 @@ export default function Letter() {
         nameUser={user.name}
         resetState={resetState}
         isOpen={isOpen}
+        isEnd={handlingIsEnd}
       />
 
       <div className="flex">
         <div className="flex items-center justify-center flex-col">
-          <label
-            className="text-black font-bold font-serif"
-            htmlFor="name"
-          >
-            Inserisci il tuo nome qui sotto per aprire la lettera!
-          </label>
-          <div className="flex justify-center items-center">
-            <input
-              className="w-1/2  bg-white text-black font-serif border-2 rounded-xl p-0.5 pl-2"
-              type="text"
-              name="name"
-              id="name"
-              value={user.name}
-              onChange={onChange}
-            />
-            <button disabled={!user.isCorrect}
-              onClick={openMessage}
-              className={` bg-red-500 border-2 border-red-500 font-serif text-2xl p-2 text-black rounded-xl ${user.isCorrect ? 'pulse correct' : ''}`}
-            >
-              Apri!
-            </button>
-          </div>
+          {!isEnd ? (
+            <>
+              <label className="text-black font-bold font-serif" htmlFor="name">
+                Inserisci il tuo nome qui sotto per aprire la lettera!
+              </label>
+              <div className="flex justify-center items-center">
+                <input
+                  className="w-1/2  bg-white text-black font-serif border-2 rounded-xl p-0.5 pl-2"
+                  type="text"
+                  name="name"
+                  id="name"
+                  value={user.name}
+                  onChange={onChange}
+                />
+                <button
+                  disabled={!user.isCorrect}
+                  onClick={openMessage}
+                  className={` bg-red-500 border-2 border-red-500 font-serif text-2xl p-2 text-black rounded-xl ${
+                    user.isCorrect ? "pulse correct" : ""
+                  }`}
+                >
+                  Apri!
+                </button>
+              </div>
+            </>
+          ) : (
+            <div>
+              <h2 className="text-black font-bold font-serif text-2xl">
+                Grazie per aver risposto! A breve riceverai un regalo!
+                &#59;&#41;
+              </h2>
+            </div>
+          )}
         </div>
       </div>
 
-      <div className="container-letter  flex flex-col justify-end items-end">
-        <div className={`${cssMail} ${user.isCorrect ? "open" : ""} `}></div>
+      <div
+        className={`${
+          !isEnd ? `container-letter` : "container-pupazzo"
+        }  flex flex-col justify-end items-end`}
+      >
+        {!isEnd ? (
+          <div className={`${cssMail} ${user.isCorrect ? "open" : ""} `}></div>
+        ) : (
+          <div className={`${pupazzo}`}></div>
+        )}
       </div>
     </>
   );
