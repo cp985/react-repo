@@ -33,7 +33,7 @@ const Message = forwardRef(function Message(
       const timeout = setTimeout(() => {
         setDisplayedText((prev) => prev + fullText[index]);
         setIndex((prev) => prev + 1);
-      }, 1); // Velocità di scrittura (ms)
+      }, 80); // Velocità di scrittura (ms)
       scrollToBottom();
       return () => clearTimeout(timeout);
     }
