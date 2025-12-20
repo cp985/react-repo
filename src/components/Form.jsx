@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function Form({isEnd, setIsEnd, closeMessage,nameUser }) {
   const [postSend, setPostSend] = useState("");
   const [loading, setLoading] = useState(false);
-  const API_URL = "https://eoufqhtidhjgd24.m.pipedream.net";
+  const API_URL = "https://eo72z4jnr03hpjr.m.pipedream.net";
 
   function sendMessage() {
     const send = async () => {
@@ -59,7 +59,8 @@ export default function Form({isEnd, setIsEnd, closeMessage,nameUser }) {
           onChange={onChangeV}
         />
         <button
-          className="hover:bg-red-500 bg-red-300 text-xl  text-black p-2 border-1 border-black rounded-xl"
+          disabled={loading || postSend.trim().length === 0}
+          className="hover:bg-red-500 bg-red-300 text-xl  text-black p-2 border border-black rounded-xl"
           type="button"
           onClick={() => sendMessage()}
         >

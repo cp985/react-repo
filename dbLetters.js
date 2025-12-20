@@ -9,7 +9,7 @@ Per concludere questa mia ti auguro un buon natale e un felice anno nuovo! ;)
 
 Cordialmente C.
 
-P:S se vorrai rispondere  a questo messaggio dovrai scrivere nell’area apposita che apparirà tra qualche istante qui in basso e premere invio 😊` },
+P.S se vorrai rispondere  a questo messaggio dovrai scrivere nell’area apposita che apparirà tra qualche istante qui in basso e premere invio 😊` },
   { text: `Caro little friendo come stai? Come procedono le tue maratone su quegli schi....ehm volevo dire, quei bellissimi giochi roblox e fortnite?. 
 Per caso hai già acquistato ArcRiders?
 ....secondo me si... :P
@@ -20,7 +20,7 @@ Sembrerà una frase fatta ma quello che verrà dopo ti piacerà molto ma moooooo
 Per concludere questa mia ti auguro un buon natale e un felice anno nuovo! ;)   
 Cordialmente C.
 
-P:S se vorrai rispondere  a questo messaggio dovrai scrivere nell’area apposita che apparirà tra qualche istante qui in basso e premere invio 😊` },
+P.S se vorrai rispondere  a questo messaggio dovrai scrivere nell’area apposita che apparirà tra qualche istante qui in basso e premere invio 😊` },
   {
     text: `Cara Ale come stai?. Io sono tornato nel mio loop infinito di cose di casa,lavoro e studio come al solito. 
 Il tempo è volato velocissimo e senza manco accorgemene siamo già arrivati a  natale.
@@ -37,7 +37,7 @@ Per concludere questa mia ti auguro buon natale e goditi queste feste in famigli
 
 Cordialmente C.
 
-P:S se vorrai rispondere  a questo messaggio dovrai scrivere nell’area apposita che apparirà tra qualche istante qui in basso e premere invio 😊`,
+P.S se vorrai rispondere  a questo messaggio dovrai scrivere nell’area apposita che apparirà tra qualche istante qui in basso e premere invio 😊`,
   },
   { text: "Error" },
 ];

@@ -1,33 +1,81 @@
 .message {
-  top: 50%;
-  left: 50%;
+  /* Centramento automatico del dialog */
+  margin: auto;
   width: 80vw;
   height: 80vh;
-  transform: translate(-50%, -50%);
+
+  /* Background e bordi */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   padding: 1rem;
+  border: 3px solid red;
+
+  /* Testo e font */
   color: black;
   font-style: italic;
   white-space: pre-wrap;
-  border: 3px solid red;
   outline: none;
+
+  /* STATO BASE (Chiuso) - Fondamentale per la chiusura fluida */
+  opacity: 0;
+  transform: scale(0.9);
+
+  /* Definizione della transizione */
+  transition:
+    opacity 0.4s ease-out,
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    display 0.4s allow-discrete,
+    overlay 0.4s allow-discrete;
+}
+
+/* STATO APERTO */
+.message[open] {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Animazione di ENTRATA (dal nulla all'apparizione) */
+@starting-style {
+  .message[open] {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+/* Gestione esplicita dello stato di chiusura */
+.message:not([open]) {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+/* ANIMAZIONE DEL BACKDROP (Sfondo scuro) */
+.message::backdrop {
+  background-color: rgba(0, 0, 0, 0);
+  transition:
+    display 0.4s allow-discrete,
+    overlay 0.4s allow-discrete,
+    background-color 0.4s ease;
+}
+
+.message[open]::backdrop {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+@starting-style {
+  .message[open]::backdrop {
+    background-color: rgba(0, 0, 0, 0);
+  }
 }
 
 p {
   font-size: clamp(1rem, 0.3rem + 2vw, 2rem);
-
 }
 
 textarea:focus {
   outline: none;
-}
-
-.message::backdrop {
-  background-color: rgba(255, 255, 255, 0.715);
 }
 
 .custom-cursor {
@@ -43,17 +91,5 @@ textarea:focus {
 @keyframes blink {
   50% {
     opacity: 0;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
