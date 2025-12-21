@@ -58,28 +58,28 @@ export default function Letter() {
   //  },1)
 
   // }
-function openMessage() {
-  // 1. Togli il focus
-  if (document.activeElement) {
-    document.activeElement.blur();
-  }
-
-  // 2. Forza il reset dello zoom e della posizione
-  // Proviamo a scrollare leggermente e tornare su
-  window.scrollTo(0, 0);
-  document.body.scrollTop = 0;
-
-  // 3. Aspettiamo che Safari finisca l'animazione della tastiera (critico su iOS)
-  setTimeout(() => {
-    if (messageRef.current) {
-      setIsOpen(true);
-      messageRef.current.showModal();
-      
-      // 4. Ultimo check: se dopo l'apertura siamo ancora fuori asse
-      window.scrollTo(0, 0);
+  function openMessage() {
+    // 1. Forza la chiusura della tastiera su mobile
+    if (document.activeElement) {
+      document.activeElement.blur();
     }
-  }, 250); // Tempo aumentato per dare respiro a iOS
-}
+
+    // 2. Reset dello scroll per Safari
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
+    // 3. Delay per permettere a iOS di processare la chiusura della tastiera
+    setTimeout(() => {
+      if (messageRef.current) {
+        setIsOpen(true);
+        messageRef.current.showModal();
+        
+        // 4. Ri-forziamo il posizionamento dopo l'apertura
+        window.scrollTo(0, 0);
+      }
+    }, 250);
+  }
   function closeMessage() {
     if (messageRef.current) {
       messageRef.current.close();
