@@ -1,8 +1,6 @@
 .message {
   /* Centramento automatico del dialog */
-  /* margin: auto; */
-      transform: translate(-50%, -50%) scale(0.9);
-
+  margin: auto;
   width: 80vw;
   height: 80vh;
 
@@ -48,24 +46,21 @@ body:has(dialog[open]) {
 /* STATO APERTO */
 .message[open] {
   opacity: 1;
-      transform: translate(-50%, -50%) scale(0.9);
-
+  transform: scale(1);
 }
 
 /* Animazione di ENTRATA (dal nulla all'apparizione) */
 @starting-style {
   .message[open] {
     opacity: 0;
-        transform: translate(-50%, -50%) scale(0.9);
-
+    transform: scale(0.9);
   }
 }
 
 /* Gestione esplicita dello stato di chiusura */
 .message:not([open]) {
   opacity: 0;
-     transform: translate(-50%, -50%) scale(0.9);
-
+  transform: scale(0.9);
 }
 
 /* ANIMAZIONE DEL BACKDROP (Sfondo scuro) */
