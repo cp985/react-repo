@@ -53,7 +53,7 @@ export default function Form({isEnd, setIsEnd, closeMessage,nameUser }) {
         method="#"
       >
         <textarea
-          className="bg-white w-3/4 text-black border-2 border-red-500 p-1 mt-3"
+          className="bg-white w-5/6 text-black border-2 border-red-500 p-1 mt-3"
           placeholder="Inserisci qui il tuo testo"
           value={postSend}
           onChange={onChangeV}

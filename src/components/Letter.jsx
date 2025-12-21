@@ -58,18 +58,26 @@ export default function Letter() {
   //  },1)
 
   // }
-function openMessage() {
+
+
+  function openMessage() {
   if (document.activeElement) {
     document.activeElement.blur();
   }
 
+  document.body.classList.add("no-animations");
+
   setTimeout(() => {
     if (messageRef.current) {
       messageRef.current.showModal();
-      document.body.style.zoom = "1";
       setIsOpen(true);
     }
-  }, 100);
+
+    // riattiva dopo apertura
+    setTimeout(() => {
+      document.body.classList.remove("no-animations");
+    }, 300);
+  }, 50);
 }
 
   function closeMessage() {
