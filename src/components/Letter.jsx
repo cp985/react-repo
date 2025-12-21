@@ -58,28 +58,20 @@ export default function Letter() {
   //  },1)
 
   // }
-  function openMessage() {
-    // 1. Forza la chiusura della tastiera su mobile
-    if (document.activeElement) {
-      document.activeElement.blur();
-    }
-
-    // 2. Reset dello scroll per Safari
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-
-    // 3. Delay per permettere a iOS di processare la chiusura della tastiera
-    setTimeout(() => {
-      if (messageRef.current) {
-        setIsOpen(true);
-        messageRef.current.showModal();
-        
-        // 4. Ri-forziamo il posizionamento dopo l'apertura
-        window.scrollTo(0, 0);
-      }
-    }, 250);
+function openMessage() {
+  if (document.activeElement) {
+    document.activeElement.blur();
   }
+
+  setTimeout(() => {
+    if (messageRef.current) {
+      messageRef.current.showModal();
+      document.body.style.zoom = "1";
+      setIsOpen(true);
+    }
+  }, 100);
+}
+
   function closeMessage() {
     if (messageRef.current) {
       messageRef.current.close();
@@ -121,7 +113,7 @@ export default function Letter() {
                 <button
                   disabled={!user.isCorrect}
                   onClick={openMessage}
-                  className={` bg-red-500 border-2 border-red-500 font-serif text-2xl p-2 text-black rounded-xl ${
+                  className={` bg-red-500 border-2 border-red-500 font-serif text-2xl p-1 text-black rounded-xl ${
                     user.isCorrect ? "pulse correct" : ""
                   }`}
                 >

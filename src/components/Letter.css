@@ -50,27 +50,20 @@
 label {
     font-size: clamp(1.3rem, 0.5rem + 2vw, 2rem);
 }
+@supports (-webkit-touch-callout: none) {
+  input {
+    font-size: 16px !important;
+  }
+}
 
 input {
     font-size: clamp(1rem, 0.3rem + 2vw, 2rem);
     margin: 1rem;
     border: 3px solid #B22222;
 
-    /* Applicazione dell'animazione */
-    animation-name: border-pulse-glow;
-    animation-duration: 2s;
-    /* Durata del ciclo */
-    animation-iteration-count: infinite;
-    /* Infinito */
-    animation-timing-function: ease-in-out;
-    /* Fluidità */
-
-    /* Transizione per lo stato focus e hover (per interattività) */
-    transition: all 0.3s ease-in-out;
-
-    /* Rimuove l'ombra di focus di default del browser */
     outline: none;
 }
+
 
 @keyframes border-pulse-glow {
     0% {
