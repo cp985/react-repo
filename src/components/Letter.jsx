@@ -59,23 +59,29 @@ export default function Letter() {
 
   // }
 
-  function openMessage() {
-  // 1. Togliamo il focus per chiudere la tastiera
-  if (document.activeElement instanceof HTMLElement) {
+function openMessage() {
+  // 1. Forza la chiusura della tastiera
+  if (document.activeElement) {
     document.activeElement.blur();
   }
 
-  // 2. Aspettiamo un tempo leggermente più lungo per permettere 
-  // alla tastiera di scomparire e al viewport di stabilizzarsi
+  // 2. Forza il reset dello scroll del contenitore principale
+  // Questo aiuta Safari a "dimenticare" lo zoom dell'input
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'instant' 
+  });
+
+  // 3. Un ritardo leggermente maggiore (150-200ms) è necessario su iOS 
+  // per attendere che l'animazione di chiusura tastiera finisca davvero
   setTimeout(() => {
     if (messageRef.current) {
-      messageRef.current.showModal();
+      // Importante: settiamo lo stato PRIMA del showModal per preparare i CSS
       setIsOpen(true);
-      
-      // 3. Trick extra: scrolla leggermente la pagina per forzare il refresh del layout
-      window.scrollTo(0, 0);
+      messageRef.current.showModal();
     }
-  }, 300); // 300ms è il tempo standard di chiusura tastiera su iOS
+  }, 150);
 }
   function closeMessage() {
     if (messageRef.current) {
