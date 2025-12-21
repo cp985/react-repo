@@ -50,10 +50,13 @@ export default function Letter() {
 
   function openMessage() {
     if(document.activeElement){document.activeElement.blur()}
-    if (messageRef.current) {
+   setTimeout(() => {
+         if (messageRef.current) {
       messageRef.current.showModal();
       setIsOpen(true);
     }
+   },1)
+
   }
   function closeMessage() {
     if (messageRef.current) {
