@@ -48,16 +48,35 @@ export default function Letter() {
     }
   }
 
+  // function openMessage() {
+  //   if(document.activeElement){document.activeElement.blur()}
+  //  setTimeout(() => {
+  //        if (messageRef.current) {
+  //     messageRef.current.showModal();
+  //     setIsOpen(true);
+  //   }
+  //  },1)
+
+  // }
+
   function openMessage() {
-    if(document.activeElement){document.activeElement.blur()}
-   setTimeout(() => {
-         if (messageRef.current) {
+  // 1. Togliamo il focus per chiudere la tastiera
+  if (document.activeElement instanceof HTMLElement) {
+    document.activeElement.blur();
+  }
+
+  // 2. Aspettiamo un tempo leggermente più lungo per permettere 
+  // alla tastiera di scomparire e al viewport di stabilizzarsi
+  setTimeout(() => {
+    if (messageRef.current) {
       messageRef.current.showModal();
       setIsOpen(true);
+      
+      // 3. Trick extra: scrolla leggermente la pagina per forzare il refresh del layout
+      window.scrollTo(0, 0);
     }
-   },1)
-
-  }
+  }, 300); // 300ms è il tempo standard di chiusura tastiera su iOS
+}
   function closeMessage() {
     if (messageRef.current) {
       messageRef.current.close();
