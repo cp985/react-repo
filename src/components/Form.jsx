@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Form({isEnd, setIsEnd, closeMessage,nameUser }) {
+export default function Form({ isEnd, setIsEnd, closeMessage, nameUser }) {
   const [postSend, setPostSend] = useState("");
   const [loading, setLoading] = useState(false);
   const API_URL = "https://eo72z4jnr03hpjr.m.pipedream.net";
@@ -12,7 +12,11 @@ export default function Form({isEnd, setIsEnd, closeMessage,nameUser }) {
       try {
         const response = await fetch(API_URL, {
           method: "POST",
-          body: JSON.stringify({ name: nameUser, text: postSend , time : new Date()}),
+          body: JSON.stringify({
+            name: nameUser,
+            text: postSend,
+            time: new Date(),
+          }),
           headers: {
             "Content-Type": "application/json",
           },
@@ -38,7 +42,7 @@ export default function Form({isEnd, setIsEnd, closeMessage,nameUser }) {
     };
 
     send();
-    isEnd()
+    isEnd();
     closeMessage();
   }
 
@@ -60,7 +64,7 @@ export default function Form({isEnd, setIsEnd, closeMessage,nameUser }) {
         />
         <button
           disabled={loading || postSend.trim().length === 0}
-          className="hover:bg-red-500 bg-red-300 text-xl  text-black p-2 border border-black rounded-xl"
+          className="hover:bg-red-500 bg-red-300 text-xl  text-black p-2 border border-black rounded-xl font-semibold"
           type="button"
           onClick={() => sendMessage()}
         >
