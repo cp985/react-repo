@@ -1,18 +1,24 @@
 .christmas {
-  font-family: "Mountains of Christmas", serif;
-  font-weight: 600;
+    font-family: "Mountains of Christmas", serif;
+    font-weight: 600;
+    font-size: clamp(3rem, 2.5rem + 2.5vw, 6rem);
+
+
 
 }
 
 /* 1. Definizione dell'Animazione */
 @keyframes bounce-wave {
-    0%, 100% {
+
+    0%,
+    100% {
         /* Posizione normale */
         transform: translateY(0);
     }
+
     50% {
         /* Spostamento leggero verso l'alto */
-        transform: translateY(-10px); 
+        transform: translateY(-10px);
     }
 }
 
@@ -21,19 +27,19 @@
     /* Rende l'H1 un contenitore flessibile in linea */
     display: inline-flex;
     /* Assicura che le lettere non vengano spezzate */
-    white-space: nowrap; 
+    white-space: nowrap;
 }
 
 /* 3. Stile e Applicazione dell'Animazione ad ogni <span> */
 .christmas-wave span {
     /* Necessario per applicare la trasformazione (translateY) */
-    display: inline-block; 
-    
+    display: inline-block;
+
     /* Applicazione dell'animazione */
     animation-name: bounce-wave;
     animation-duration: 1.5s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
-    
+
     /* Il ritardo viene impostato inline nel JSX (style={{ animationDelay: ... }}) */
 }

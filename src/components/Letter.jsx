@@ -49,6 +49,7 @@ export default function Letter() {
   }
 
   function openMessage() {
+    if(document.activeElement){document.activeElement.blur()}
     if (messageRef.current) {
       messageRef.current.showModal();
       setIsOpen(true);
