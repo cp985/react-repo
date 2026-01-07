@@ -6,9 +6,10 @@ Il progetto mostra come combinare **design professionale**, **user experience fl
 
 🔗 **Demo Live:**  
 👉 https://cp985.github.io/react-repo/
-    user: dany,dodo,알레산드라 (e versioni maiuscole e minuscole)
+   
 ---
-
+ per entrare usare le user: dany,dodo,알레산드라 (e versioni maiuscole e minuscole)
+ 
 ## 📌 Descrizione
 
 Questa applicazione è una landing page web sviluppata con **React 18** e configurata con **Vite** come build tool per ottenere un’esperienza di sviluppo rapida e snella.  
